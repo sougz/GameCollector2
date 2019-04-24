@@ -1,12 +1,40 @@
 extends layout
 
 block content
-      .site-wrapper
-            .site-wapper-inner
-                  .cover-container
-                        .inner.cover
-                              h1.cover-heading GameCollector!!!!!!!
-                              p.lead
-                                    |Sougat has a micro peepee
-                              p.lead
-                                    |HA ye knew it ;)
+      .container
+            .row
+                  .jumbotron
+                        .container
+                              h1 Make a Donation
+                             p
+                             | "Talk about donations."
+            #products.row.view-group
+                  .item.col-md-4
+                        a(href='snake')
+                              .thumbnail.card
+                                    .img-event
+                                          img.group.list-group-image.img-fluid(src="/images/snakePreview.png", alt="First Aid - First Aid Kit")
+                                    .caption.card-body
+                                          h4.group.card-title.inner.list-group-item-heading
+                                                | First Aid Materials
+                                          p.group.inner.list-group-item-text
+                                                | Field surgery tools, bandages, alcohol swabs, medical tape, gauze, etc.
+                  .item.col-md-4
+                        .thumbnail.card
+                              .img-event
+                                    img.group.list-group-image.img-fluid(src="/images/first-aid-kit.png", alt="First Aid - First Aid Kit")
+                              .caption.card-body
+                                    h4.group.card-title.inner.list-group-item-heading
+                                          | First Aid Materials
+                                    p.group.inner.list-group-item-text
+                                          | Field surgery tools, bandages, alcohol swabs, medical tape, gauze, etc.
+
+                  .item.col-md-4
+                        .thumbnail.card
+                              .img-event
+                                    img.group.list-group-image.img-fluid(src="/images/first-aid-kit.png", alt="First Aid - First Aid Kit")
+                              .caption.card-body
+                                    h4.group.card-title.inner.list-group-item-heading
+                                          | First Aid Materials
+                                    p.group.inner.list-group-item-text
+                                          | Field surgery tools, bandages, alcohol swabs, medical tape, gauze, etc.
