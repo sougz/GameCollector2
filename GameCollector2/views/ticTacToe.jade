@@ -75,31 +75,31 @@ function win(clicked) {
     }
     return false;
 }
-    | function contains(selector, text) {
-    | var elements = document.querySelectorAll(selector);
-    | return [].filter.call(elements, function(element){
-    | return RegExp(text).test(element.textContent);
-    | });
-    | }
-    | /*
-    | * Sets clicked square and also updates the turn.
-    | */
-    | function set() {
-    | if (this.innerHTML !== EMPTY) {
-    | return;
-    | }
-    | this.innerHTML = turn;
-    | moves += 1;
-    | score[turn] += this.identifier;
-    | if (win(this)) {
-    | alert(&apos;Winner: Player &apos; + turn);
-    | startNewGame();
-    | } else if (moves === N_SIZE * N_SIZE) {
-    | alert(&quot;Draw&quot;);
-    | startNewGame();
-    | } else {
-    | turn = turn === &quot;X&quot; ? &quot;O&quot; : &quot;X&quot;;
-    | document.getElementById(&apos;turn&apos;).textContent = &apos;Player &apos; + turn;
-    | }
-    | }
-    | init();
+function contains(selector, text) {
+    var elements = document.querySelectorAll(selector);
+    return [].filter.call(elements, function(element){
+        return RegExp(text).test(element.textContent);
+    });
+}
+/*
+ * Sets clicked square and also updates the turn.
+ */
+function set() {
+    if (this.innerHTML !== EMPTY) {
+        return;
+    }
+    this.innerHTML = turn;
+    moves += 1;
+    score[turn] += this.identifier;
+    if (win(this)) {
+        alert(&apos;Winner: Player &apos; + turn);
+        startNewGame();
+    } else if (moves === N_SIZE * N_SIZE) {
+        alert(&quot;Draw&quot;);
+        startNewGame();
+    } else {
+        turn = turn === &quot;X&quot; ? &quot;O&quot; : &quot;X&quot;;
+        document.getElementById(&apos;turn&apos;).textContent = &apos;Player &apos; + turn;
+    }
+}
+init();
