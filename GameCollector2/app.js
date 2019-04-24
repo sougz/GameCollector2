@@ -59,7 +59,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+  console.log(Server running at http://${hostname}:${port}/);
 });*/
 
 const express = require('express');
@@ -93,6 +93,9 @@ app.get('/snake', function(req, res) {
 
 app.get('/connect4', function(req, res) {
   res.render('connect4');
+});
+app.get('/ticTacToe', function(req, res){
+  res.render('ticTacToe');
 });
 
 app.listen(port, function(){
