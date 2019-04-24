@@ -3,8 +3,27 @@ extends layout
 block content
       .container
             .row
-                  .jumbotron
-                        .container
-                              h1 Registration Page
-                             p
-                             | Please register here!
+                  aside.col-sm-4
+                        p Registration Form
+                              .card
+                                    article.card-body
+                                          //a.float-right.btn.btn-outline-primary(href='/registrationPage') Sign up//
+                                          h4.card-title.mb-4.mt-1 Register
+                                          form
+                                                .form-group
+                                                      label Your email
+                                                      input.form-control(name='', placeholder='Email', type='email')
+                                                // form-group//
+                                                .form-group
+                                                      //a.float-right(href='#') Forgot?//
+                                                      label Your password
+                                                      input.form-control(placeholder='******', type='password')
+                                                // form-group//
+                                                .form-group
+                                                      // form-group//
+                                                      .form-group
+                                                            button.btn.btn-primary.btn-block(type='submit')  Register
+                                                      // form-group//
+                                                      // card.//
+                                                      // col.//
+                                                      
