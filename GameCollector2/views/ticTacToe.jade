@@ -1,0 +1,105 @@
+/*
+ * Tic Tac Toe
+ *
+ * A Tic Tac Toe game in HTML/JavaScript/CSS.
+ *
+ * @author: Vasanth Krishnamoorthy
+ */
+var N_SIZE = 3,
+EMPTY = &quot;&nbsp;&quot;,
+boxes = [],
+turn = &quot;X&quot;,
+score,
+moves;
+/*
+ * Initializes the Tic Tac Toe board and starts the game.
+*/
+function init() {
+    var board = document.createElement(&apos;table&apos;);
+    board.setAttribute(&quot;border&quot;, 1);
+    board.setAttribute(&quot;cellspacing&quot;, 0);
+    var identifier = 1;
+    for (var i = 0; i &lt; N_SIZE; i++) {
+        var row = document.createElement(&apos;tr&apos;);
+        board.appendChild(row);
+        for (var j = 0; j &lt; N_SIZE; j++) {
+            var cell = document.createElement(&apos;td&apos;);
+            cell.setAttribute(&apos;height&apos;, 120);
+            cell.setAttribute(&apos;width&apos;, 120);
+            cell.setAttribute(&apos;align&apos;, &apos;center&apos;);
+            cell.setAttribute(&apos;valign&apos;, &apos;center&apos;);
+            cell.classList.add(&apos;col&apos; + j,&apos;row&apos; + i);
+            if (i == j) {
+                cell.classList.add(&apos;diagonal0&apos;);
+            }
+            if (j == N_SIZE - i - 1) {
+                cell.classList.add(&apos;diagonal1&apos;);
+            }
+            cell.identifier = identifier;
+            cell.addEventListener(&quot;click&quot;, set);
+            row.appendChild(cell);
+            boxes.push(cell);
+            identifier += identifier;
+        }
+    }
+    document.getElementById(&quot;tictactoe&quot;).appendChild(board);
+    startNewGame();
+}
+/*
+* New game
+*/
+function startNewGame() {
+    score = {
+        &quot;X&quot;: 0,
+        &quot;O&quot;: 0
+    };
+    moves = 0;
+    turn = &quot;X&quot;;
+    boxes.forEach(function (square) {
+        square.innerHTML = EMPTY;
+    });
+}
+/*
+ * Check if a win or not
+*/
+function win(clicked) {
+    // Get all cell classes
+    var memberOf = clicked.className.split(/\s+/);
+    for (var i = 0; i &lt; memberOf.length; i++) {
+        var testClass = &apos;.&apos; + memberOf[i];
+        var items = contains(&apos;#tictactoe &apos; + testClass, turn);
+        // winning condition: turn == N_SIZE
+        if (items.length == N_SIZE) {
+            return true;
+        }
+    }
+    return false;
+}
+    | function contains(selector, text) {
+    | var elements = document.querySelectorAll(selector);
+    | return [].filter.call(elements, function(element){
+    | return RegExp(text).test(element.textContent);
+    | });
+    | }
+    | /*
+    | * Sets clicked square and also updates the turn.
+    | */
+    | function set() {
+    | if (this.innerHTML !== EMPTY) {
+    | return;
+    | }
+    | this.innerHTML = turn;
+    | moves += 1;
+    | score[turn] += this.identifier;
+    | if (win(this)) {
+    | alert(&apos;Winner: Player &apos; + turn);
+    | startNewGame();
+    | } else if (moves === N_SIZE * N_SIZE) {
+    | alert(&quot;Draw&quot;);
+    | startNewGame();
+    | } else {
+    | turn = turn === &quot;X&quot; ? &quot;O&quot; : &quot;X&quot;;
+    | document.getElementById(&apos;turn&apos;).textContent = &apos;Player &apos; + turn;
+    | }
+    | }
+    | init();
