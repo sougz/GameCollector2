@@ -87,10 +87,9 @@ app.get('/index', function(req, res) {
   res.render('index');
   //res.send('Kenny can go suck a dick!!!!!\n');
 });
-/*app.get('/dashboard', function(req, res) {
-
-  res.render('dashboard');
-});*/
+app.get('/snake', function(req, res) {
+  res.render('snake');
+});
 
 app.listen(port, function(){
   console.log('Node js Express js Tutorial');
