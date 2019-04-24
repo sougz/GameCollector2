@@ -223,6 +223,11 @@ body {
     border-radius: 0px;
 }
 
+img.group.list-group-image.img-fluid
+{
+      height: 200px;
+}
+
 .item.list-group-item
 {
     float: none;
@@ -274,4 +279,3 @@ body {
 .progress{
 	margin: 20px;
 }
-
