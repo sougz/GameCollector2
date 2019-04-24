@@ -2,7 +2,7 @@ extends layout
 block content
     .container
         #tictactoe
-            div(align='left')
+            div(align='center')
                 span#turn Player X
         style. 
             table {
@@ -14,6 +14,7 @@ block content
             font-size:80px;
             color:#ffffff;
             border-radius: 10px 10px 10px 10px;
+            board-allign='center';
             }
         script.
             var N_SIZE = 3,
