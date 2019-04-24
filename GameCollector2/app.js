@@ -91,6 +91,10 @@ app.get('/snake', function(req, res) {
   res.render('snake');
 });
 
+app.get('/connect4', function(req, res) {
+  res.render('connect4');
+});
+
 app.listen(port, function(){
   console.log('Node js Express js Tutorial');
 });
