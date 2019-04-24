@@ -28,6 +28,83 @@ html(lang='en')
                         messagingSenderId: "685732358765"
                   };
                   firebase.initializeApp(config);
+                  //auntheticating user while loading page
+                  function checkIfLoggedIn(){
+                        firebase.auth().onAuthStateChanged(function(user){
+                              if(user){
+                                    console.log('user logged in')
+                                    if(window.location.href == 'http://localhost:3000/' || window.location.href == 'http://localhost:3000/loginPage' || window.location.href == "localhost:3000/" || window.location.href == "localhost:3000/loginPage"){
+                                          document.getElementById('login')
+                                          .setAttribute('style', 'display:none; visbility:hidden')
+                                          document.getElementById('signout')
+                                          .setAttribute('style', 'display:inline; visbility:hidden')
+                                    }
+                                    document.getElementById('loginPage')
+                                    .setAttribute('style', 'display:none; visbility:hidden')
+                                    document.getElementById('registrationPage')
+                                    .setAttribute('style', 'display:none; visbility:hidden')
+                                    document.getElementById('snake')
+                                    .setAttribute('style', 'display:inline; visbility:visible')
+                                    document.getElementById('connect4')
+                                    .setAttribute('style', 'display:inline; visbility:visible')
+                                    document.getElementById('ticTacToe')
+                                    .setAttribute('style', 'display:inline; visbility:visible')   
+                                    document.getElementById('highscore')
+                                    .setAttribute('style', 'display:inline; visbility:visible')
+                              }
+                              else{
+                                    if(window.location.href == 'http://localhost:3000/' || window.location.href == 'http://localhost:3000/loginPage' || window.location.href == "localhost:3000/" || window.location.href == "localhost:3000/loginPage"){
+                                          //- console.log("hi")
+                                          //- window.location.href = "http://google.com"
+                                          console.log(window.location.pathname == '/loginPage')
+                                    }
+                                    else{
+                                          window.location.replace('http://localhost:3000/')
+                                    }
+                                    console.log('user not logged in')
+                                    if(window.location.href == 'http://localhost:3000/' || window.location.href == 'http://localhost:3000/loginPage' || window.location.href == "localhost:3000/" || window.location.href == "localhost:3000/loginPage"){
+                                          document.getElementById('signout')
+                                          .setAttribute('style', 'display:none; visbility:hidden')
+                                          document.getElementById('login')
+                                          .setAttribute('style', 'display:inline; visbility:hidden')
+                                    }
+                                    document.getElementById('snake')
+                                    .setAttribute('style', 'display:none; visbility:hidden')
+                                    document.getElementById('connect4')
+                                    .setAttribute('style', 'display:none; visbility:hidden')
+                                    document.getElementById('ticTacToe')
+                                    .setAttribute('style', 'display:none; visbility:hidden')   
+                                    document.getElementById('highscore')
+                                    .setAttribute('style', 'display:none; visbility:hidden')
+                                    document.getElementById('loginPage')
+                                    .setAttribute('style', 'display:inline; visbility:visible')
+                                    document.getElementById('registrationPage')
+                                    .setAttribute('style', 'display:inline; visbility:visible')
+                              }
+                        })
+                        //var user = firebaser.auth().currentUser
+                  }
+
+                  window.onload = function(){
+                        checkIfLoggedIn()
+                  }
+                  function signInWithGoogle(){
+                        var googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+
+                        firebase.auth().signInWithPopup(googleAuthProvider)
+                              .then(function(data){
+                                    console.log(data)
+                                    var idToken = data.credential.idToken
+                                    localStorage.setItem('firebase_idToken', idToken)
+                              })
+                              .catch(function(error){
+                                    console.log(error)
+                              })
+                  }
+                  function signOut(){
+                        firebase.auth().signOut()
+                        checkedIfLoggedIn
+                  }
 
       body
             nav.navbar.navbar-inverse.navbar-fixed-top
