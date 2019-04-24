@@ -1,22 +1,22 @@
 extends layout
 
 block content
-      h1 Connect Four
+      h1 Snake
       p.info
-      | Play Againist the Computer!
+      | Be the Snake. Feel the Snake.
       div#score 0
       canvas#gameCanvas(width='300', height='300')
       style.
             #gameCanvas {
                   position: absolute;
-                  top: 60%;
+                  top: 65%;
                   left: 50%;
                   transform: translate(-50%, -50%);
 
             }
             #score {
                   text-align: center;
-                  font-size: 140px;
+                  font-size: 100px;
                   font-family: 'Antic Slab', serif;
             }
             body{
@@ -79,7 +79,7 @@ block content
             function main() {
             // If the game ended return early to stop game
             if (didGameEnd()){
-                  alert('You fucking dumbass');
+                  alert('You lost!');
                   document.location.reload(true);
                   return;
             }
