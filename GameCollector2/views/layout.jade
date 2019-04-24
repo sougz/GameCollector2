@@ -35,22 +35,28 @@ html(lang='en')
                                     console.log('user logged in')
                                     if(window.location.href == 'http://localhost:3000/' || window.location.href == 'http://localhost:3000/loginPage' || window.location.href == "localhost:3000/" || window.location.href == "localhost:3000/loginPage"){
                                           document.getElementById('login')
-                                          .setAttribute('style', 'display:none; visbility:hidden')
+                                          .setAttribute('style', 'display:none; visibility:hidden')
                                           document.getElementById('signout')
-                                          .setAttribute('style', 'display:inline; visbility:hidden')
+                                          .setAttribute('style', 'display:inline; visibility:visible')
                                     }
+                                    
+
                                     document.getElementById('loginPage')
+                                    .setAttribute('style', 'display:inline; visibility:visible')
+                                    document.getElementById('loginLink')
+                                    .innerHTML = "Log Out"
+                                    /*document.getElementById('registrationPage')
                                     .setAttribute('style', 'display:none; visbility:hidden')
-                                    document.getElementById('registrationPage')
-                                    .setAttribute('style', 'display:none; visbility:hidden')
+                                    */
                                     document.getElementById('snake')
-                                    .setAttribute('style', 'display:inline; visbility:visible')
+                                    .setAttribute('style', 'display:inline; visibility:visible')
                                     document.getElementById('connect4')
-                                    .setAttribute('style', 'display:inline; visbility:visible')
+                                    .setAttribute('style', 'display:inline; visibility:visible')
                                     document.getElementById('ticTacToe')
-                                    .setAttribute('style', 'display:inline; visbility:visible')   
-                                    document.getElementById('highscore')
+                                    .setAttribute('style', 'display:inline; visibility:visible')   
+                                    /*document.getElementById('highscore')
                                     .setAttribute('style', 'display:inline; visbility:visible')
+                                    */
                               }
                               else{
                                     if(window.location.href == 'http://localhost:3000/' || window.location.href == 'http://localhost:3000/loginPage' || window.location.href == "localhost:3000/" || window.location.href == "localhost:3000/loginPage"){
@@ -64,22 +70,24 @@ html(lang='en')
                                     console.log('user not logged in')
                                     if(window.location.href == 'http://localhost:3000/' || window.location.href == 'http://localhost:3000/loginPage' || window.location.href == "localhost:3000/" || window.location.href == "localhost:3000/loginPage"){
                                           document.getElementById('signout')
-                                          .setAttribute('style', 'display:none; visbility:hidden')
+                                          .setAttribute('style', 'display:none; visibility:hidden')
                                           document.getElementById('login')
-                                          .setAttribute('style', 'display:inline; visbility:hidden')
+                                          .setAttribute('style', 'display:inline; visibility:visible')
                                     }
                                     document.getElementById('snake')
-                                    .setAttribute('style', 'display:none; visbility:hidden')
+                                    .setAttribute('style', 'display:none; visibility:hidden')
                                     document.getElementById('connect4')
-                                    .setAttribute('style', 'display:none; visbility:hidden')
+                                    .setAttribute('style', 'display:none; visibility:hidden')
                                     document.getElementById('ticTacToe')
-                                    .setAttribute('style', 'display:none; visbility:hidden')   
-                                    document.getElementById('highscore')
+                                    .setAttribute('style', 'display:none; visibility:hidden')   
+                                    /*document.getElementById('highscore')
                                     .setAttribute('style', 'display:none; visbility:hidden')
+                                    */
                                     document.getElementById('loginPage')
+                                    .setAttribute('style', 'display:inline; visibility:visible')
+                                    /*document.getElementById('registrationPage')
                                     .setAttribute('style', 'display:inline; visbility:visible')
-                                    document.getElementById('registrationPage')
-                                    .setAttribute('style', 'display:inline; visbility:visible')
+                                    */
                               }
                         })
                         //var user = firebaser.auth().currentUser
@@ -124,12 +132,9 @@ html(lang='en')
                                           a(href='connect4') Connect4
                                     li#ticTacToe
                                           a(href='ticTacToe') Tic-Tac-Toe
-                                    li#highscore
-                                          a(href='highscore') highscore
                                     li#loginPage
-                                          a(href='loginPage') Login Page
-                                    li#registrationPage
-                                          a(href='registrationPage') Registration Page
+                                          a#loginLink(href='loginPage') Login Page
+                                    
 
             .container
                   .starter-template

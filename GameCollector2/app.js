@@ -32,9 +32,9 @@ app.get('/', function(req, res) {
 
 });
 
-app.get('/registrationPage', function(req, res){
+/*app.get('/registrationPage', function(req, res){
       res.render('registrationPage');
-})
+})*/
 
 app.get('/homePage', function(req, res){
   res.render('homePage');
@@ -60,9 +60,9 @@ app.get('/ticTacToe', function(req, res){
   res.render('ticTacToe');
 });
 
-app.get('/highscore', function(req, res){
+/*app.get('/highscore', function(req, res){
       res.render('highscore');
-});
+});*/
 
 app.listen(port, function(){
   console.log('Node js Express js Tutorial');
