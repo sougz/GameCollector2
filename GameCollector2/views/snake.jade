@@ -61,8 +61,12 @@ block content
                   */
                   function main() {
                   // If the game ended return early to stop game
-                  if (didGameEnd()) return;
-                  setTimeout(function onTick() {
+                  if (didGameEnd()){
+                        alert('You fucking dumbass');
+                        document.location.reload(true);
+                        return;
+                  }
+                  setTimeout(function() {
                   changingDirection = false;
                   clearCanvas();
                   drawFood();
