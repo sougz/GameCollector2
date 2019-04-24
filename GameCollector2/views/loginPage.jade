@@ -1,28 +1,83 @@
+
+
 extends layout
 
 block content
       .container
             .row
                   aside.col-sm-4
-                        p Login Form
-                              .card
-                                    article.card-body
-                                          a.float-right.btn.btn-outline-primary(href='/registrationPage') Sign up
-                                          h4.card-title.mb-4.mt-1 Sign in
-                                          form
-                                                .form-group
-                                                      label Your email
-                                                      input.form-control(name='', placeholder='Email', type='email')
+                        .card
+                              article.card-body
+                                          button#login.btn.btn-primary.btn-block(onclick='signInWithGoogle()')  Sign In With Google!
+                                          button#signout.btn.btn-primary.btn-block(onclick='signOut()')  Logout
                                                 // form-group//
-                                                .form-group
-                                                      //a.float-right(href='#') Forgot?//
-                                                      label Your password
-                                                      input.form-control(placeholder='******', type='password')
-                                                // form-group//
-                                                .form-group
-                                                      // form-group//
-                                                      .form-group
-                                                            button.btn.btn-primary.btn-block(type='submit')  Login
-                                                      // form-group//
-                                                      // card.//
-                                                      // col.//
+                                                // card.//
+                                                // col.//
+                                          script.
+                                                function checkIfLoggedIn(){
+                                                      firebase.auth().onAuthStateChanged(function(user){
+                                                            if(user){
+                                                                  console.log('user logged in')
+                                                                  document.getElementById('login')
+                                                                  .setAttribute('style', 'display:none; visbility:hidden')
+                                                                  document.getElementById('signout')
+                                                                  .setAttribute('style', 'display:inline; visbility:hidden')
+                                                                  document.getElementById('loginPage')
+                                                                  .setAttribute('style', 'display:none; visbility:hidden')
+                                                                  document.getElementById('registrationPage')
+                                                                  .setAttribute('style', 'display:none; visbility:hidden')
+                                                                  document.getElementById('snake')
+                                                                  .setAttribute('style', 'display:inline; visbility:visible')
+                                                                  document.getElementById('connect4')
+                                                                  .setAttribute('style', 'display:inline; visbility:visible')
+                                                                  document.getElementById('ticTacToe')
+                                                                  .setAttribute('style', 'display:inline; visbility:visible')   
+                                                                  document.getElementById('highscore')
+                                                                  .setAttribute('style', 'display:inline; visbility:visible')
+                                                            }
+                                                            else{
+                                                                  console.log('user not logged in')
+                                                                  document.getElementById('signout')
+                                                                  .setAttribute('style', 'display:none; visbility:hidden')
+                                                                  document.getElementById('login')
+                                                                  .setAttribute('style', 'display:inline; visbility:hidden')
+                                                                  document.getElementById('snake')
+                                                                  .setAttribute('style', 'display:none; visbility:hidden')
+                                                                  document.getElementById('connect4')
+                                                                  .setAttribute('style', 'display:none; visbility:hidden')
+                                                                  document.getElementById('ticTacToe')
+                                                                  .setAttribute('style', 'display:none; visbility:hidden')   
+                                                                  document.getElementById('highscore')
+                                                                  .setAttribute('style', 'display:none; visbility:hidden')
+                                                                  document.getElementById('loginPage')
+                                                                  .setAttribute('style', 'display:inline; visbility:visible')
+                                                                  document.getElementById('registrationPage')
+                                                                  .setAttribute('style', 'display:inline; visbility:visible')
+                                                            }
+                                                      })
+                                                      .catch(function (error){
+                                                                  console.log(error)
+                                                      })
+                                                      //var user = firebaser.auth().currentUser
+                                                }
+
+                                                window.onload = function(){
+                                                      checkIfLoggedIn()
+                                                }
+                                                function signInWithGoogle(){
+                                                      var googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+
+                                                      firebase.auth().signInWithPopup(googleAuthProvider)
+                                                            .then(function(data){
+                                                                  console.log(data)
+                                                                  var idToken = data.credential.idToken
+                                                                  localStorage.setItem('firebase_idToken', idToken)
+                                                            })
+                                                            .catch(function(error){
+                                                                  console.log(error)
+                                                            })
+                                                }
+                                                function signOut(){
+                                                      firebase.auth().signOut()
+                                                      checkedIfLoggedIn
+                                                }

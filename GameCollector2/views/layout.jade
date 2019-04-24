@@ -9,11 +9,26 @@ html(lang='en')
             meta(name='author', content='')
             link(rel='shortcut icon', href='/images/favicon.ico', type='image/x-icon')
             title GameCollector
+            script(src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js")
+
+            //script(src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js")
+            script(src='https://www.gstatic.com/firebasejs/5.0.0/firebase-auth.js')
             script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
             link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
             // link(rel="stylesheet",href="css/bootstrap.min.css")
             // Custom styles for this template
             link(rel='stylesheet', href='/stylesheets/style.css')
+            script.
+                  var config = {
+                        apiKey: "AIzaSyAyLB70LtGpputFqEi4PTKElGhKG7cQwgY",
+                        authDomain: "gamecollector2.firebaseapp.com",
+                        databaseURL: "https://gamecollector2.firebaseio.com",
+                        projectId: "gamecollector2",
+                        storageBucket: "gamecollector2.appspot.com",
+                        messagingSenderId: "685732358765"
+                  };
+                  firebase.initializeApp(config);
+
       body
             nav.navbar.navbar-inverse.navbar-fixed-top
                   .container
@@ -26,17 +41,17 @@ html(lang='en')
                               a.navbar-brand(href='homePage') GameCollector
                         #navbar.collapse.navbar-collapse
                               ul.nav.navbar-nav
-                                    li
+                                    li#snake
                                           a(href='snake') Snake
-                                    li
+                                    li#connect4
                                           a(href='connect4') Connect4
-                                    li
+                                    li#ticTacToe
                                           a(href='ticTacToe') Tic-Tac-Toe
-                                    li
+                                    li#highscore
                                           a(href='highscore') highscore
-                                    li
+                                    li#loginPage
                                           a(href='loginPage') Login Page
-                                    li
+                                    li#registrationPage
                                           a(href='registrationPage') Registration Page
 
             .container

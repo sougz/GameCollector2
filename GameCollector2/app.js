@@ -3,7 +3,16 @@ const bodyParser = require('body-parser')
 const app = express();
 const port = 3000;
 
+
+
+const admin = require('firebase-admin')
+const serviceAccount = require('./gamecollector2-firebase-adminsdk-qbhlt-080059cfda.json')
+const firebaseAdmin = admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount), databaseURL: 'https://gamecollector2.firebaseio.com'
+})
+
 let router = require('express').Router();
+
 
 //var admin = require("firebase-admin");
 app.use(express.static('public'));
@@ -14,6 +23,9 @@ app.use(bodyParser.json());
  }));
 //var serviceAccount = require("./serviceAccountKey.json");
 
+function isAunthenticated(request, response, next){
+  next()
+}
 
 app.get('/', function(req, res) {
   res.render('loginPage');
@@ -36,7 +48,7 @@ app.get('/index', function(req, res) {
   res.render('index');
 
 });
-app.get('/snake', function(req, res) {
+app.get('/snake', isAunthenticated, function(req, res) {
   res.render('snake');
 });
 
