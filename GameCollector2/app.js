@@ -71,7 +71,7 @@ let router = require('express').Router();
 
 //var admin = require("firebase-admin");
 app.use(express.static('public'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'jade');
 app.use(bodyParser.json());
  app.use(bodyParser.urlencoded({
  extended: true
@@ -88,7 +88,7 @@ app.get('/index', function(req, res) {
   //res.send('Kenny can go suck a dick!!!!!\n');
 });
 /*app.get('/dashboard', function(req, res) {
-  
+
   res.render('dashboard');
 });*/
 
@@ -96,4 +96,3 @@ app.listen(port, function(){
   console.log('Node js Express js Tutorial');
 });
 module.exports = router;
-
