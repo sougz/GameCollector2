@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content=""><meta name="author" content=""><link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"><title>GameCollector</title><script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script><!--script(src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js")--><script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-auth.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"><!-- link(rel="stylesheet",href="css/bootstrap.min.css")--><!-- Custom styles for this template--><link rel="stylesheet" href="./stylesheets/style.css"><script>var config = {
+      apiKey: "AIzaSyAyLB70LtGpputFqEi4PTKElGhKG7cQwgY",
+      authDomain: "gamecollector2.firebaseapp.com",
+      databaseURL: "https://gamecollector2.firebaseio.com",
+      projectId: "gamecollector2",
+      storageBucket: "gamecollector2.appspot.com",
+      messagingSenderId: "685732358765"
+};
+firebase.initializeApp(config);
+//auntheticating user while loading page
+function checkIfLoggedIn(){
+      firebase.auth().onAuthStateChanged(function(user){
+            if(user){
+                  console.log('user logged in')
+                  if(window.location.href == 'https://gamecollector2.firebaseapp.com' || window.location.href == 'https://gamecollector2.firebaseapp.com/loginPage.html' || window.location.href == "https://gamecollector2.firebaseapp.com/loginPage.html" || window.location.href == "https://gamecollector2.firebaseapp.com/loginPage.htmlloginPage"){
+                        document.getElementById('login')
+                        .setAttribute('style', 'display:none; visibility:hidden')
+                        document.getElementById('signout')
+                        .setAttribute('style', 'display:inline; visibility:visible')
+                  }
+                  
+
+                  document.getElementById('loginPage')
+                  .setAttribute('style', 'display:inline; visibility:visible')
+                  document.getElementById('loginLink')
+                  .innerHTML = "Log Out"
+                  /*document.getElementById('registrationPage')
+                  .setAttribute('style', 'display:none; visbility:hidden')
+                  */
+                  document.getElementById('snake')
+                  .setAttribute('style', 'display:inline; visibility:visible')
+                  document.getElementById('connect4')
+                  .setAttribute('style', 'display:inline; visibility:visible')
+                  document.getElementById('ticTacToe')
+                  .setAttribute('style', 'display:inline; visibility:visible')   
+                  /*document.getElementById('highscore')
+                  .setAttribute('style', 'display:inline; visbility:visible')
+                  */
+            }
+            else{
+                  if(window.location.href == 'https://gamecollector2.firebaseapp.com' || window.location.href == 'https://gamecollector2.firebaseapp.com/loginPage.html' || window.location.href == "https://gamecollector2.firebaseapp.com/loginPage.html" || window.location.href == "https://gamecollector2.firebaseapp.com/loginPage.htmlloginPage"){
+                        //- console.log("hi")
+                        //- window.location.href = "http://google.com"
+                        console.log(window.location.pathname == '/loginPage')
+                  }
+                  else{
+                        window.location.replace('https://gamecollector2.firebaseapp.com/loginPage.html')
+                  }
+                  console.log('user not logged in')
+                  if(window.location.href == 'https://gamecollector2.firebaseapp.com' || window.location.href == 'https://gamecollector2.firebaseapp.com/loginPage.html' || window.location.href == "https://gamecollector2.firebaseapp.com/loginPage.html" || window.location.href == "https://gamecollector2.firebaseapp.com/loginPage.htmlloginPage"){
+                        document.getElementById('signout')
+                        .setAttribute('style', 'display:none; visibility:hidden')
+                        document.getElementById('login')
+                        .setAttribute('style', 'display:inline; visibility:visible')
+                  }
+                  document.getElementById('snake')
+                  .setAttribute('style', 'display:none; visibility:hidden')
+                  document.getElementById('connect4')
+                  .setAttribute('style', 'display:none; visibility:hidden')
+                  document.getElementById('ticTacToe')
+                  .setAttribute('style', 'display:none; visibility:hidden')   
+                  /*document.getElementById('highscore')
+                  .setAttribute('style', 'display:none; visbility:hidden')
+                  */
+                  document.getElementById('loginPage')
+                  .setAttribute('style', 'display:inline; visibility:visible')
+                  /*document.getElementById('registrationPage')
+                  .setAttribute('style', 'display:inline; visbility:visible')
+                  */
+            }
+      })
+      //var user = firebaser.auth().currentUser
+}
+
+window.onload = function(){
+      checkIfLoggedIn()
+}
+function signInWithGoogle(){
+      var googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+
+      firebase.auth().signInWithPopup(googleAuthProvider)
+            .then(function(data){
+                  console.log(data)
+                  var idToken = data.credential.idToken
+                  localStorage.setItem('firebase_idToken', idToken)
+            })
+            .catch(function(error){
+                  console.log(error)
+            })
+}
+function signOut(){
+      firebase.auth().signOut()
+      checkedIfLoggedIn
+}
+</script></head><body><nav class="navbar navbar-inverse navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="homePage.html.html.html.html.html.html.html" class="navbar-brand">GameCollector</a></div><div id="navbar" class="collapse navbar-collapse"><ul class="nav navbar-nav"><li id="snake"><a href="snake.html">Snake</a></li><li id="connect4"><a href="connect4.html">Connect4</a></li><li id="ticTacToe"><a href="ticTacToe.html">Tic-Tac-Toe</a></li><li id="loginPage"><a id="loginLink" href="loginPage.html">Login Page</a></li></ul></div></div></nav><div class="container"><div class="starter-template"><h1>Connect Four</h1><p class="info"></p>Play Against the Computer!<div id="game-base"></div><div id="game-table"></div><!-- end base--><script>var gameField = new Array();
+var board = document.getElementById("game-table");
+var currentCol;
+var currentRow;
+var currentPlayer;
+var id = 1;
+newgame();
+function newgame(){
+prepareField();
+placeDisc(Math.floor(Math.random()*2)+1);
+}
+function checkForVictory(row,col){
+if(getAdj(row,col,0,1)+getAdj(row,col,0,-1) > 2){
+return true;
+} else {
+if(getAdj(row,col,1,0) > 2){
+return true;
+} else {
+if(getAdj(row,col,-1,1)+getAdj(row,col,1,-1) > 2){
+return true;
+} else {
+if(getAdj(row,col,1,1)+getAdj(row,col,-1,-1) > 2){
+return true;
+} else {
+return false;
+}
+}
+}
+}
+}
+function getAdj(row,col,row_inc,col_inc){
+if(cellVal(row,col) == cellVal(row+row_inc,col+col_inc)){
+return 1+getAdj(row+row_inc,col+col_inc,row_inc,col_inc);
+} else {
+return 0;
+}
+}
+function cellVal(row,col){
+if(gameField[row] == undefined || gameField[row][col] == undefined){
+return -1;
+} else {
+return gameField[row][col];
+}
+}
+function firstFreeRow(col,player){
+for(var i = 0; i<6; i++){
+if(gameField[i][col]!=0){
+break;
+}
+}
+gameField[i-1][col] = player;
+return i-1;
+}
+function possibleColumns(){
+var moves_array = new Array();
+for(var i=0; i<7; i++){
+if(gameField[0][i] == 0){
+moves_array.push(i);
+}
+}
+return moves_array;
+}
+function think(){
+var possibleMoves = possibleColumns();
+var aiMoves = new Array();
+var blocked;
+var bestBlocked = 0;
+for(var i=0; i<possibleMoves.length; i++){
+for(var j=0; j<6; j++){
+if(gameField[j][possibleMoves[i]] != 0){
+break;
+}
+}
+gameField[j-1][possibleMoves[i]] = 1;
+blocked = getAdj(j-1,possibleMoves[i],0,1)+getAdj(j-1,possibleMoves[i],0,-1);
+blocked = Math.max(blocked,getAdj(j-1,possibleMoves[i],1,0));
+blocked = Math.max(blocked,getAdj(j-1,possibleMoves[i],-1,1));
+blocked = Math.max(blocked,getAdj(j-1,possibleMoves[i],1,1)+getAdj(j-1, possibleMoves[i],-1,-1));
+if(blocked >= bestBlocked){
+if(blocked>bestBlocked){
+bestBlocked = blocked;
+aiMoves = new Array();
+}
+aiMoves.push(possibleMoves[i]);
+}
+gameField[j-1][possibleMoves[i]] = 0;
+}
+return aiMoves;
+}
+function Disc(player){
+this.player = player;
+this.color = player == 1 ? 'red' : 'yellow';
+this.id = id.toString();
+id++;
+this.addToScene = function(){
+board.innerHTML += '<div id="d'+this.id+'" class="disc '+this.color+'"></div>';
+if(currentPlayer==2){
+//computer move
+var possibleMoves = think();
+var cpuMove = Math.floor( Math.random() * possibleMoves.length);
+currentCol = possibleMoves[cpuMove];
+document.getElementById('d'+this.id).style.left = (14+60*currentCol)+"px";
+dropDisc(this.id,currentPlayer);
+}
+}
+var $this = this;
+document.onmousemove = function(evt){
+if(currentPlayer == 1){
+currentCol = Math.floor((evt.clientX - board.offsetLeft)/60);
+if(currentCol<0){currentCol=0;}
+if(currentCol>6){currentCol=6;}
+document.getElementById('d'+$this.id).style.left = (14+60*currentCol)+"px";
+document.getElementById('d'+$this.id).style.top = "-55px";
+}
+}
+document.onload = function(evt){
+if(currentPlayer == 1){
+currentCol = Math.floor((evt.clientX - board.offsetLeft)/60);
+if(currentCol<0){currentCol=0;}
+if(currentCol>6){currentCol=6;}
+document.getElementById('d'+$this.id).style.left = (14+60*currentCol)+"px";
+document.getElementById('d'+$this.id).style.top = "-55px";
+}
+}
+document.onclick = function(evt){
+if(currentPlayer == 1){
+if(possibleColumns().indexOf(currentCol) != -1){
+dropDisc($this.id,$this.player);
+}
+}
+}
+}
+function dropDisc(cid,player){
+currentRow = firstFreeRow(currentCol,player);
+moveit(cid,(14+currentRow*60));
+currentPlayer = player;
+checkForMoveVictory();
+}
+function checkForMoveVictory(){
+if(!checkForVictory(currentRow,currentCol)){
+placeDisc(3-currentPlayer);
+} else {
+var ww = currentPlayer == 2 ? 'Computer' : 'Player';
+placeDisc(3-currentPlayer);
+alert(ww+" win!");
+board.innerHTML = "";
+newgame();
+}
+}
+function placeDisc(player){
+currentPlayer = player;
+var disc = new Disc(player);
+disc.addToScene();
+}
+function prepareField(){
+gameField = new Array();
+for(var i=0; i<6; i++){
+gameField[i] = new Array();
+for(var j=0; j<7; j++){
+gameField[i].push(0);
+}
+}
+}
+function moveit(who,where){
+document.getElementById('d'+who).style.top = where+'px';
+}</script><style>body{
+background:#eee;
+}
+h1{
+text-align:center;
+margin-bottom:5px;
+}
+p.info{
+text-align:center;
+width:400px;
+margin:0 auto;
+font-size:12px;
+font-weight:bold;
+color:#666;
+margin-bottom:20px;
+}
+#game-base{
+width:640px;
+margin:0 auto;
+padding-top:60px;
+}
+#game-table{
+border-style: solid;
+border-width: 3px;
+width:434px;
+height:374px;
+margin:0 auto;
+background:url("http://img.sr/images/2014/01/28/base.png") 0 0 no-repeat;
+position:relative;
+}
+.disc{
+border-style: solid;
+border-width: 2.5px;
+position:absolute;
+z-index:-1;
+top:-55px;
+left:14px;
+width:46px;
+height:46px;
+border-radius:46px;
+transition:all .3s;
+}
+.disc.red{
+background:#d96666;
+}
+.disc.yellow{
+background:#ffeb79;
+}</style></div></div><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script></body></html>

@@ -16,6 +16,7 @@ let router = require('express').Router();
 
 //var admin = require("firebase-admin");
 app.use(express.static('public'));
+app.set('views', './public/views/');
 app.set('view engine', 'jade');
 app.use(bodyParser.json());
  app.use(bodyParser.urlencoded({

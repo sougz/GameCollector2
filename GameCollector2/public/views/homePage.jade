@@ -1,0 +1,42 @@
+extends layout
+
+block content
+      .container
+            .row
+                  .jumbotron
+                        .container
+                              h1 GameCollector
+                             p
+                             | Gaming website to host old school games
+            #products.row.view-group
+                  .item.col-md-4
+                        a(href='snake')
+                              .thumbnail.card
+                                    .img-event
+                                          img.group.list-group-image.img-fluid(src="/images/snakePreview.png", alt="First Aid - First Aid Kit")
+                                    .caption.card-body
+                                          h4.group.card-title.inner.list-group-item-heading
+                                                | Snake
+                                          p.group.inner.list-group-item-text
+                                                |  Maneuver a line which grows in length, with the line itself being a primary obstacle
+                  .item.col-md-4
+                        a(href='connect4')
+                              .thumbnail.card
+                                    .img-event
+                                          img.group.list-group-image.img-fluid(src="/images/connectPreview.png", alt="First Aid - First Aid Kit")
+                                    .caption.card-body
+                                          h4.group.card-title.inner.list-group-item-heading
+                                                | Connect4
+                                          p.group.inner.list-group-item-text
+                                                | Simple Connect 4 game against the computer
+
+                  .item.col-md-4
+                        a(href='ticTacToe')
+                              .thumbnail.card
+                                    .img-event
+                                          img.group.list-group-image.img-fluid(src="/images/tictactoePreview.png", alt="First Aid - First Aid Kit")
+                                    .caption.card-body
+                                          h4.group.card-title.inner.list-group-item-heading
+                                                | TicTacToe
+                                          p.group.inner.list-group-item-text
+                                                | Basic everyday game to Tic the Toe

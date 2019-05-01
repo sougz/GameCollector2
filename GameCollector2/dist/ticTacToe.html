@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content=""><meta name="author" content=""><link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"><title>GameCollector</title><script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script><!--script(src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js")--><script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-auth.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"><!-- link(rel="stylesheet",href="css/bootstrap.min.css")--><!-- Custom styles for this template--><link rel="stylesheet" href="./stylesheets/style.css"><script>var config = {
+      apiKey: "AIzaSyAyLB70LtGpputFqEi4PTKElGhKG7cQwgY",
+      authDomain: "gamecollector2.firebaseapp.com",
+      databaseURL: "https://gamecollector2.firebaseio.com",
+      projectId: "gamecollector2",
+      storageBucket: "gamecollector2.appspot.com",
+      messagingSenderId: "685732358765"
+};
+firebase.initializeApp(config);
+//auntheticating user while loading page
+function checkIfLoggedIn(){
+      firebase.auth().onAuthStateChanged(function(user){
+            if(user){
+                  console.log('user logged in')
+                  if(window.location.href == 'https://gamecollector2.firebaseapp.com' || window.location.href == 'https://gamecollector2.firebaseapp.com/loginPage.html' || window.location.href == "https://gamecollector2.firebaseapp.com/loginPage.html" || window.location.href == "https://gamecollector2.firebaseapp.com/loginPage.htmlloginPage"){
+                        document.getElementById('login')
+                        .setAttribute('style', 'display:none; visibility:hidden')
+                        document.getElementById('signout')
+                        .setAttribute('style', 'display:inline; visibility:visible')
+                  }
+                  
+
+                  document.getElementById('loginPage')
+                  .setAttribute('style', 'display:inline; visibility:visible')
+                  document.getElementById('loginLink')
+                  .innerHTML = "Log Out"
+                  /*document.getElementById('registrationPage')
+                  .setAttribute('style', 'display:none; visbility:hidden')
+                  */
+                  document.getElementById('snake')
+                  .setAttribute('style', 'display:inline; visibility:visible')
+                  document.getElementById('connect4')
+                  .setAttribute('style', 'display:inline; visibility:visible')
+                  document.getElementById('ticTacToe')
+                  .setAttribute('style', 'display:inline; visibility:visible')   
+                  /*document.getElementById('highscore')
+                  .setAttribute('style', 'display:inline; visbility:visible')
+                  */
+            }
+            else{
+                  if(window.location.href == 'https://gamecollector2.firebaseapp.com' || window.location.href == 'https://gamecollector2.firebaseapp.com/loginPage.html' || window.location.href == "https://gamecollector2.firebaseapp.com/loginPage.html" || window.location.href == "https://gamecollector2.firebaseapp.com/loginPage.htmlloginPage"){
+                        //- console.log("hi")
+                        //- window.location.href = "http://google.com"
+                        console.log(window.location.pathname == '/loginPage')
+                  }
+                  else{
+                        window.location.replace('https://gamecollector2.firebaseapp.com/loginPage.html')
+                  }
+                  console.log('user not logged in')
+                  if(window.location.href == 'https://gamecollector2.firebaseapp.com' || window.location.href == 'https://gamecollector2.firebaseapp.com/loginPage.html' || window.location.href == "https://gamecollector2.firebaseapp.com/loginPage.html" || window.location.href == "https://gamecollector2.firebaseapp.com/loginPage.html"){
+                        document.getElementById('signout')
+                        .setAttribute('style', 'display:none; visibility:hidden')
+                        document.getElementById('login')
+                        .setAttribute('style', 'display:inline; visibility:visible')
+                  }
+                  document.getElementById('snake')
+                  .setAttribute('style', 'display:none; visibility:hidden')
+                  document.getElementById('connect4')
+                  .setAttribute('style', 'display:none; visibility:hidden')
+                  document.getElementById('ticTacToe')
+                  .setAttribute('style', 'display:none; visibility:hidden')   
+                  /*document.getElementById('highscore')
+                  .setAttribute('style', 'display:none; visbility:hidden')
+                  */
+                  document.getElementById('loginPage')
+                  .setAttribute('style', 'display:inline; visibility:visible')
+                  /*document.getElementById('registrationPage')
+                  .setAttribute('style', 'display:inline; visbility:visible')
+                  */
+            }
+      })
+      //var user = firebaser.auth().currentUser
+}
+
+window.onload = function(){
+      checkIfLoggedIn()
+}
+function signInWithGoogle(){
+      var googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+
+      firebase.auth().signInWithPopup(googleAuthProvider)
+            .then(function(data){
+                  console.log(data)
+                  var idToken = data.credential.idToken
+                  localStorage.setItem('firebase_idToken', idToken)
+            })
+            .catch(function(error){
+                  console.log(error)
+            })
+}
+function signOut(){
+      firebase.auth().signOut()
+      checkedIfLoggedIn
+}
+</script></head><body><nav class="navbar navbar-inverse navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="homePage.html" class="navbar-brand">GameCollector</a></div><div id="navbar" class="collapse navbar-collapse"><ul class="nav navbar-nav"><li id="snake"><a href="snake.html">Snake</a></li><li id="connect4"><a href="connect4.html">Connect4</a></li><li id="ticTacToe"><a href="ticTacToe.html">Tic-Tac-Toe</a></li><li id="loginPage"><a id="loginLink" href="loginPage.html">Login Page</a></li></ul></div></div></nav><div class="container"><div class="starter-template"><h1>Tic Tac Toe</h1><p class="info"></p>Play Against Your Buddy!<div id="tictactoe"><div align="center"><span id="turn">Player X</span></div></div><style>table {
+    border-collapse: collapse;
+    border-style: solid;
+    border-width: 3px;
+    width:434px;
+    height:374px;
+    margin:0 auto;
+    position:relative;
+
+}
+td {
+background-color: black;
+border: 3px solid white;
+font-size:80px;
+color:#ffffff;
+border-radius: 10px 10px 10px 10px;
+}
+body{
+background:#eee;
+}
+h1{
+text-align:center;
+margin-bottom:5px;
+}
+p.info{
+text-align:center;
+width:400px;
+margin:0 auto;
+font-size:12px;
+font-weight:bold;
+color:#666;
+margin-bottom:20px;
+}</style><script>var N_SIZE = 3,
+    EMPTY = "&nbsp;",
+    boxes = [],
+    turn = "X",
+    score,
+    moves;
+/*
+* Initializes the Tic Tac Toe board and starts the game.
+*/
+function init() {
+    var board = document.createElement('table');
+    board.setAttribute("border", 1);
+    board.setAttribute("cellspacing", 0);
+    var identifier = 1;
+    for (var i = 0; i < N_SIZE; i++) {
+        var row = document.createElement('tr');
+        board.appendChild(row);
+        for (var j = 0; j < N_SIZE; j++) {
+            var cell = document.createElement('td');
+            cell.setAttribute('height', 120);
+            cell.setAttribute('width', 120);
+            cell.setAttribute('align', 'center');
+            cell.setAttribute('valign', 'center');
+            cell.classList.add('col' + j,'row' + i);
+            if (i == j) {
+                cell.classList.add('diagonal0');
+            }
+            if (j == N_SIZE - i - 1) {
+                cell.classList.add('diagonal1');
+            }
+            cell.identifier = identifier;
+            cell.addEventListener("click", set);
+            row.appendChild(cell);
+            boxes.push(cell);
+            identifier += identifier;
+        }
+    }
+    document.getElementById("tictactoe").appendChild(board);
+    startNewGame();
+}
+/*
+* New game
+*/
+function startNewGame() {
+    score = {
+        "X": 0,
+        "O": 0
+    };
+    moves = 0;
+    turn = "X";
+    boxes.forEach(function (square) {
+        square.innerHTML = EMPTY;
+    });
+}
+/*
+* Check if a win or not
+*/
+function win(clicked) {
+    // Get all cell classes
+    var memberOf = clicked.className.split(/\s+/);
+    for (var i = 0; i < memberOf.length; i++) {
+        var testClass = '.' + memberOf[i];
+        var items = contains('#tictactoe ' + testClass, turn);
+        // winning condition: turn == N_SIZE
+        if (items.length == N_SIZE) {
+            return true;
+        }
+    }
+    return false;
+}
+function contains(selector, text) {
+    var elements = document.querySelectorAll(selector);
+    return [].filter.call(elements, function(element){
+        return RegExp(text).test(element.textContent);
+    });
+}
+/*
+* Sets clicked square and also updates the turn.
+*/
+function set() {
+    if (this.innerHTML !== EMPTY) {
+        return;
+    }
+    this.innerHTML = turn;
+    moves += 1;
+    score[turn] += this.identifier;
+    if (win(this)) {
+        alert('Winner: Player ' + turn);
+        startNewGame();
+    } else if (moves === N_SIZE * N_SIZE) {
+        alert("Draw");
+        startNewGame();
+    } else {
+        turn = turn === "X" ? "O" : "X";
+        document.getElementById('turn').textContent = 'Player ' + turn;
+    }
+}
+init();</script></div></div><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script></body></html>
